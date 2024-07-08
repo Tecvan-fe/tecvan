@@ -3,26 +3,31 @@ import { defineConfig } from 'vitepress'
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "About Tecvan",
+  srcDir:'src',
   description: "Everything about Tecvan",
+  rewrites: {
+    ':page?/index.md': ':page/'
+  },
+  head: [['link', { rel: 'icon', href: '/favicon.ico' }]],
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Examples', link: '/markdown-examples' }
+      { text: '前端工程化系列', link: '/fee/1-preface/' },
     ],
 
     sidebar: [
       {
-        text: 'Examples',
+        text: '前端工程化',
         items: [
-          { text: 'Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' }
+          { text: '序言', link: '/fee/1-preface/' },
+          { text: '编码提效', link: '/fee/2-improve-coding-efficiency/' }
         ]
       }
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
+      { icon: 'github', link: 'https://github.com/tecvan-fe' }
     ]
   }
 })
