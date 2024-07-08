@@ -43,7 +43,8 @@
     "package.json": "json",
     "README": "markdown",
     "**/coverage/**/*.*": "plaintext",
-    "**/pnpm-lock.yaml": "plaintext"
+    "**/pnpm-lock.yaml": "plaintext",
+    ".husky/*": "powershell"
   },
   "files.exclude": {
     "**/.git": true,
