@@ -1,4 +1,7 @@
 module.exports = {
-  "**/*.{ts,md,js}": `eslint --fix --cache --no-error-on-unmatched-pattern`,
-  "**/*.json": "prettier --write",
+  '**/*.{ts,js,md}': [
+    `eslint --fix --cache --no-error-on-unmatched-pattern`,
+    'prettier --write',
+  ],
+  '**/*.json': 'prettier --write',
 };
