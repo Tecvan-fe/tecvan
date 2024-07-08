@@ -4,7 +4,6 @@ title: 前端工程化系列二：编码提效
 
 # 前端工程化系列二：编码提效
 
-
 **编码** 是软件工程全生命周期中最最关键的环节，不幸的是，这同时也是最复杂最容易出问题的环节。编码是一种非常复杂抽象的脑力活动，开发者之间受技能、熟练度、经验、习惯、偏好等影响往往会呈现出较大的效率差异，这是普遍存在的客观事实，但站在工程化管理视角，我们**需要设法尽可能克服这些差异，使得团队每一个个体都有较为稳定的编码产出**；**需要保证不同个体产出的代码集成后，系统各部件依然能如预期地正常运行**；同时，**需要确保不同个体尽可能克服各自的偏好而编写出风格相对一致的代码，以维持长期可读与可维护性**。
 
 显然，原生的 Web 核心语言 —— JS、CSS、HTML 等都难以满足上述诉求的，现代的前端工程通常会在原生语言基础上叠加一些工具、框架，组合出更具约束力、表现力的开发环境，进而保证多人协作时的工程效率、一致性、健壮、可维护性等。
@@ -27,7 +26,6 @@ title: 前端工程化系列二：编码提效
 
 ![](https://files.mdnice.com/user/1892/57af60c1-3033-4059-a8fe-57247d79e4d7.png)
 
-
 图例右侧是经过 Babel 转换生成的代码，可以看出已经去除了箭头函数、字符串模板之类的 ES6 特性，等价转换为兼容性更佳的 ES5 版本。这种方式只需投入少量的时间搭建好工具运行环境，就能标准化、自动化地处理好语法降级转换，对开发者而言不再需要关注具体规则的兼容情况，能够毫无负担地始终以较高版本的语法更优雅、高效的编写代码。
 
 除语法层面的兼容性冲突外，还有一个值得注意的历史遗留问题：**混乱的模块化方案**。当下 ECMAScript 已经提供了标准的 ES Module 方案，代码表现上更规格工整，其静态特性也使得更容易对代码做静态扫描分析(如 Tree-Shaking)，能一定程度上降低开发时的心智负担，提升效率。但因诸多历史原因 —— 包括 JS 引擎版本碎片化引发的兼容问题，多数时候我们无法直接交付 ESM 产物，转而降级为 CMD、AMD、UMD 等形态的非标准方案。
@@ -46,7 +44,7 @@ title: 前端工程化系列二：编码提效
 
 > PS: 站在工程管理视角，我们期望所有需要重复执行的事情都能被工具化、自动化，这可以降低工程师在重复事项上的效率损耗并产出更稳定可靠的结果。但客观来说工具是有能力边界的，总有一些问题无法仅仅通过编码解决，或者投入到工具建设的投入与产出不成正比，此时我们需要退而求助于别的管理工具，例如规范、文化、流程等。
 
-## 2. CSS 
+## 2. CSS
 
 与 Javascript 类似，CSS 也因浏览器版本碎片化而存在严重的**兼容性问题**，但解题思路要麻烦许多。Javascript 多数是语法与运行时接口的兼容问题，基本都能找到固定规则将高版本语法、接口一一映射到低版本实现(有时需要追加 polyfill)，问题域与解题域都是可收敛的，所以容易编写工具自动化执行。CSS 的情况则复杂许多，虽然基本语法变化不大，但某些属性、属性值可能还未被部分浏览器版本支持；甚至各家浏览器对 CSS 规范的理解不同，导致最终实现出来的样式效果存在细微差异，举几个例子：
 
@@ -68,7 +66,8 @@ a {
 ```
 
 - 编译结果：
-```
+
+```css
 a {
     background : -webkit-linear-gradient(bottom, black, white);
     background : linear-gradient(to top, black, white);
@@ -138,6 +137,7 @@ a {
 此外，社区中还存在另一种解题思路：**原子 CSS**，其理念是由工具预设海量原子样式类，每一个类只负责单一样式特性 —— 例如文字颜色、背景颜色、边距等，之后在具体场景中如同搭积木一般反复组合使用这些原子类实现样式效果。这种思路虽然放弃了 CSS 中的层叠和灵活性，但却能在 HTML 代码中直观感知到每一个元素的样式配置，避免选择器优先级引发的样式混乱问题，同时每个原子类都可以被不限次数消费复用，不必重复编写各种样式规则。以 `Taiwind` 为例：
 
 - 源码：
+
 ```html
 <div class="text-center bg-blue-400 p-3 m-2 rounded-full w-64"> 
   Hello, Tailwind CSS! 
@@ -145,6 +145,7 @@ a {
 ```
 
 - 编译产物：
+
 ```html
 <div class="_23er463 text-center bg-blue-400 p-3 m-2 rounded-full w64-"> 
   Hello, Tailwind CSS! 
@@ -159,11 +160,13 @@ a {
   width: 16rem; 
 }
 ```
+
 基于这种思路，极致情况下我们甚至不需要编写任何 CSS 代码，只需组合复用 Taiwind 提供的各类 Class 工具即可组装出预期效果。
 
 除预编译器、原子 CSS 外，社区还流行另一种方案：**CSS-in-JS**，通俗理解就是以 JS 方式编写 CSS，其理念是：既然 CSS 语言在模块化、复用性方面表现得非常弱，那就干脆“抛弃”CSS，转而借用 Javascript 语言描述样式代码，之后借助各类编译工具将 Javascript 代码转移为可正常执行的 CSS 代码，典型代表如 **Style-components**：
 
 - 源码：
+
 ```jsx
 import styled from 'styled-components';
 const Button = styled.button`
@@ -180,6 +183,7 @@ const Button = styled.button`
 ```
 
 - 执行结果：
+
 ```jsx
 <!-- HTML --> 
 <button class="Button-sc-1xa3k7-0">Click Me</button>
@@ -207,6 +211,7 @@ const Button = styled.button`
 首先是 **CSS Modules**，其核心理念是将 CSS 文件当做“模块”来导入和使用，在构建时借助 Webpack 等工具为样式自动添加哈希前缀，通过特性化的“随机”类名实现样式隔离，举个例子：
 
 - 源码：
+
 ``` jsx
 // Component.module.css
 .wrapper { color: red; }
@@ -220,6 +225,7 @@ function Component() {
 ```
 
 - 编译后：
+
 ```jsx
 // Component.module.css
 ._23_aKvs-b8bW2Vg3fwHozO { color: red; }
@@ -235,6 +241,7 @@ function Component() {
 此外，对于 Vue 项目还可以借助 `Scoped CSS` 技术实现样式隔离，其理念与上述 **CSS Modules** 类似，借助编译工具按 Vue 文件为单位为每一个选择器生成唯一限定符，实现组件级别的样式隔离，例如：
 
 - 源码：
+
 ```html
 <template> 
   <div class="example">Hello world</div> 
@@ -319,6 +326,7 @@ parentDiv.appendChild(newDiv);
 为解决这个问题，过去曾出现过一个当之无愧的王者：**jQuery**，它基于 DOM 接口封装出一套更简明易懂的链式调用接口体系，屏蔽了底层接口诸多繁琐细节，并在此基础做了许多浏览器兼容性处理，很大程度上解决了上述易用性与兼容性问题，甚至可以说，它革命性地降低了 Web 页面的复杂度，开发者可以将更多心智放在正确实现业务规则上 —— 而非适配多环境的接口逻辑，因此能在同等时间内构建出业务复杂度更高的应用，造就 Web 的第一次繁荣。
 
 - 使用 jQuery 插入元素：
+
 ```
 // 创建新的 div 元素并设置文本内容
 var newDiv = $('', {
@@ -333,6 +341,7 @@ parentDiv.append(newDiv);
 ```
 
 - 使用原生 DOM 接口：
+
 ```
 // 创建新的 div 元素 
 var newDiv = document.createElement('div'); 
@@ -377,6 +386,7 @@ const Hello = () => {
  
 export default Hello;
 ```
+
 > name 属性的变化会被自动映射到界面上。
 
 而使用 `jQuery` 实现相同功能时：
@@ -424,6 +434,7 @@ var Hello = {
 而这正是工程化擅长解决的问题，我们可以在这些底层 API 基础上叠加一层更易于理解与使用的语法，例如 JSX 之于 React，Vue SFC 之于 Vue，之后借助 Babel、ESBuild、SWC 等工具将其转换回原始的 Javascript 调用，以 JSX 为例：
 
 - 源码：
+
 ```
 var Hello = function Hello(props) { 
   return ( 
@@ -435,6 +446,7 @@ var Hello = function Hello(props) {
 ```
 
 - 编译后：
+
 ```
 var Hello = function Hello(props) { 
   return React.createElement( 
@@ -534,6 +546,6 @@ Webpack 这类集成构建框架与 Gulp 这类任务流引擎所定义的职责
 
 ![](https://files.mdnice.com/user/1892/677e8523-5876-432d-8966-88bcee4301c3.png)
 
-
 系列往期：
+
 - 《[前端工程化系列一：序言](https://mp.weixin.qq.com/s/NuH-sga13okeMVGDFZWFtQ)》
