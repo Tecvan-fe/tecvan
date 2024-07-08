@@ -137,3 +137,11 @@
   --docsearch-primary-color: var(--vp-c-brand-1) !important;
 }
 
+
+.vp-doc strong{
+  color: var(--vp-c-brand-1);
+}
+
+.logo {
+  border-radius: 4px;
+}
