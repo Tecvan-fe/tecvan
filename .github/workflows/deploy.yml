@@ -41,6 +41,8 @@ jobs:
           cache: pnpm
       - name: Setup Pages
         uses: actions/configure-pages@v4
+      - name: Setup Pnpm
+        run: npm i -g pnpm@9.5.0
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
       - name: Build with VitePress
