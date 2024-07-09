@@ -9,7 +9,16 @@ export default defineConfig({
     ':page?/index.md': ':page/',
   },
   head: [['link', { rel: 'icon', href: '/favicon.ico' }]],
+  markdown: {
+    image: {
+      // image lazy loading is disabled by default
+      lazyLoading: true,
+    },
+  },
   themeConfig: {
+    search: {
+      provider: 'local',
+    },
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: 'Home', link: '/' },
