@@ -8,7 +8,7 @@ title: 前端工程化系列二：编码提效
 
 显然，原生的 Web 核心语言 —— JS、CSS、HTML 等都难以满足上述诉求的，现代的前端工程通常会在原生语言基础上叠加一些工具、框架，组合出更具约束力、表现力的开发环境，进而保证多人协作时的工程效率、一致性、健壮、可维护性等。
 
-![](https://files.mdnice.com/user/1892/ed2484a8-6681-49e4-aad2-58053c189c6b.png)
+![](assets/2024-07-09-12-55-22.png)
 
 ## 1. Javascript
 
@@ -24,7 +24,7 @@ title: 前端工程化系列二：编码提效
 
 在没有辅助工具加持的情况下，这会导致编写代码时总需要花费额外的时间精力“人工”确认某些新语言特性在目标浏览器上是否能够正常运行，这明显是一种非常低效的处理方式！为此，我们可以使用一些语法工具(如 Babel)，**自动将高版本语法等价转换为相应的低版本语法实现**，向下获得更宽广的兼容范围，例如：
 
-![](https://files.mdnice.com/user/1892/57af60c1-3033-4059-a8fe-57247d79e4d7.png)
+![](assets/2024-07-09-13-00-37.png)
 
 图例右侧是经过 Babel 转换生成的代码，可以看出已经去除了箭头函数、字符串模板之类的 ES6 特性，等价转换为兼容性更佳的 ES5 版本。这种方式只需投入少量的时间搭建好工具运行环境，就能标准化、自动化地处理好语法降级转换，对开发者而言不再需要关注具体规则的兼容情况，能够毫无负担地始终以较高版本的语法更优雅、高效的编写代码。
 
@@ -60,8 +60,8 @@ title: 前端工程化系列二：编码提效
 
 ```css
 a {
-     background : linear-gradient(to top, black, white);
-     display : flex
+  background: linear-gradient(to top, black, white);
+  display: flex;
 }
 ```
 
@@ -69,13 +69,13 @@ a {
 
 ```css
 a {
-    background : -webkit-linear-gradient(bottom, black, white);
-    background : linear-gradient(to top, black, white);
-    display : -webkit-box;
-    display : -webkit-flex;
-    display : -moz-box;
-    display : -ms-flexbox;
-    display : flex
+  background: -webkit-linear-gradient(bottom, black, white);
+  background: linear-gradient(to top, black, white);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 ```
 
@@ -118,13 +118,25 @@ a {
 ```css
 .button {
   background: #3333aa;
-  background: -webkit-gradient(linear, left top, left bottom, from(#3333aa), to(#5555cc));
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(#3333aa),
+    to(#5555cc)
+  );
   background: -moz-linear-gradient(top, #3333aa, #5555cc);
   background: linear-gradient(top, #3333aa, #5555cc);
 }
 .modal {
   background: #ffffff;
-  background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#dddddd));
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(#ffffff),
+    to(#dddddd)
+  );
   background: -moz-linear-gradient(top, #ffffff, #dddddd);
   background: linear-gradient(top, #ffffff, #dddddd);
 }
@@ -134,34 +146,36 @@ a {
 
 当然，Less 等工具并不只是解决了复用性问题，它们设计初衷就是全方位补齐 CSS 语言本身各方面的缺陷，例如我们可以借此为项目预设一套基础样式工具 —— 如同 Javascript 中的基础库，之后在工程的不同位置适当消费这些样式工具，使得样式代码更可读、可维护、可复用，甚至更健壮。
 
-此外，社区中还存在另一种解题思路：**原子 CSS**，其理念是由工具预设海量原子样式类，每一个类只负责单一样式特性 —— 例如文字颜色、背景颜色、边距等，之后在具体场景中如同搭积木一般反复组合使用这些原子类实现样式效果。这种思路虽然放弃了 CSS 中的层叠和灵活性，但却能在 HTML 代码中直观感知到每一个元素的样式配置，避免选择器优先级引发的样式混乱问题，同时每个原子类都可以被不限次数消费复用，不必重复编写各种样式规则。以 `Taiwind` 为例：
+此外，社区中还存在另一种解题思路：**原子 CSS**，其理念是由工具预设海量原子样式类，每一个类只负责单一样式特性 —— 例如文字颜色、背景颜色、边距等，之后在具体场景中如同搭积木一般反复组合使用这些原子类实现样式效果。这种思路虽然放弃了 CSS 中的层叠和灵活性，但却能在 HTML 代码中直观感知到每一个元素的样式配置，避免选择器优先级引发的样式混乱问题，同时每个原子类都可以被不限次数消费复用，不必重复编写各种样式规则。以 [Tailwind](https://tailwindcss.com/) 为例：
 
 - 源码：
 
 ```html
-<div class="text-center bg-blue-400 p-3 m-2 rounded-full w-64"> 
-  Hello, Tailwind CSS! 
+<div class="text-center bg-blue-400 p-3 m-2 rounded-full w-64">
+  Hello, Tailwind CSS!
 </div>
 ```
 
 - 编译产物：
 
 ```html
-<div class="_23er463 text-center bg-blue-400 p-3 m-2 rounded-full w64-"> 
-  Hello, Tailwind CSS! 
+<div class="_23er463 text-center bg-blue-400 p-3 m-2 rounded-full w64-">
+  Hello, Tailwind CSS!
 </div>
 
-._23er463 { 
-  text-align: center; 
-  background-color: #60a5fa; 
-  padding: 0.75rem; 
-  margin: 0.5rem; 
-  border-radius: 9999px; 
-  width: 16rem; 
-}
+<style>
+  ._23er463 {
+    text-align: center;
+    background-color: #60a5fa;
+    padding: 0.75rem;
+    margin: 0.5rem;
+    border-radius: 9999px;
+    width: 16rem;
+  }
+</style>
 ```
 
-基于这种思路，极致情况下我们甚至不需要编写任何 CSS 代码，只需组合复用 Taiwind 提供的各类 Class 工具即可组装出预期效果。
+基于这种思路，极致情况下我们甚至不需要编写任何 CSS 代码，只需组合复用 [Tailwind](https://tailwindcss.com/) 提供的各类 Class 工具即可组装出预期效果。
 
 除预编译器、原子 CSS 外，社区还流行另一种方案：**CSS-in-JS**，通俗理解就是以 JS 方式编写 CSS，其理念是：既然 CSS 语言在模块化、复用性方面表现得非常弱，那就干脆“抛弃”CSS，转而借用 Javascript 语言描述样式代码，之后借助各类编译工具将 Javascript 代码转移为可正常执行的 CSS 代码，典型代表如 **Style-components**：
 
@@ -179,24 +193,24 @@ const Button = styled.button`
   }
 `;
 // 在组件中使用
-<Button>Click Me</Button>
+<Button>Click Me</Button>;
 ```
 
 - 执行结果：
 
 ```jsx
-<!-- HTML --> 
+<!-- HTML -->
 <button class="Button-sc-1xa3k7-0">Click Me</button>
 
-/* CSS */ 
-.Button-sc-1xa3k7-0 { 
-  background-color: blue; 
-  color: white; 
-  padding: 10px 15px; 
-  border-radius: 5px; 
-} 
-.Button-sc-1xa3k7-0:hover { 
-  background-color: darkblue; 
+/* CSS */
+.Button-sc-1xa3k7-0 {
+  background-color: blue;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 5px;
+}
+.Button-sc-1xa3k7-0:hover {
+  background-color: darkblue;
 }
 ```
 
@@ -212,15 +226,15 @@ const Button = styled.button`
 
 - 源码：
 
-``` jsx
+```jsx
 // Component.module.css
 .wrapper { color: red; }
 
 // xxx.tsx
-import styles from './Component.module.css'; 
- 
-function Component() { 
-  return <div className={styles.wrapper}>Hello World</div>; 
+import styles from './Component.module.css';
+
+function Component() {
+  return <div className={styles.wrapper}>Hello World</div>;
 }
 ```
 
@@ -231,8 +245,8 @@ function Component() {
 ._23_aKvs-b8bW2Vg3fwHozO { color: red; }
 
 // xxx.js
-function Component() { 
-  return <div className="_23_aKvs-b8bW2Vg3fwHozO">Hello World</div>; 
+function Component() {
+  return <div className="_23_aKvs-b8bW2Vg3fwHozO">Hello World</div>;
 }
 ```
 
@@ -243,14 +257,14 @@ function Component() {
 - 源码：
 
 ```html
-<template> 
-  <div class="example">Hello world</div> 
-</template> 
- 
-<style scoped> 
-.example { 
-  color: red; 
-} 
+<template>
+  <div class="example">Hello world</div>
+</template>
+
+<style scoped>
+  .example {
+    color: red;
+  }
 </style>
 ```
 
@@ -259,9 +273,7 @@ function Component() {
 ```html
 <div class="example" data-v-21e5b78>Hello world</div>
 
-.example[data-v-21e5b78] { 
-  color: red; 
-}
+.example[data-v-21e5b78] { color: red; }
 ```
 
 而对于 React 项目，则可以借助诸多 **CSS-in-JS** 工具实现样式隔离，效果不一而足。
@@ -271,15 +283,15 @@ function Component() {
 最后，与 Javascript 类似，CSS 也同样面临**风格一致性问题**，以及由此引发的可读性、可维护性差等一系列衍生问题，例如：
 
 ```css
-.example { 
-  color: red; 
+.example {
+  color: red;
   font-size: 12px;
-} 
- 
+}
+
 // vs
-.example { 
+.example {
   font-size: 12px;
-  color: red; 
+  color: red;
 }
 ```
 
@@ -290,35 +302,35 @@ function Component() {
 作为 Web 语言的重要组成部分之一，HTML 主要用于以类 XML 的结构化语法表述页面“内容” —— 包括文本、图片、视频、链接等元素，问题在于语言本身相对静态且过于“描述性”，侧重于“声明”内容而无法响应变化，必须借助 Javascript 语言才能实现页面的动态效果 —— 如表单验证、内容更新等，但基于 DOM 规范所提供 HTML 文档接口实在过于晦涩难懂(个人感觉，设计的过于教条化了)，例如，为了插入一个元素：
 
 ```js
-// 创建新的 div 元素 
-var newDiv = document.createElement('div'); 
-// 给 div 设置文本内容 
-newDiv.textContent = '这是一个新的 div 元素！'; 
-// 找到这个新元素的父节点 
-var parentDiv = document.querySelector('.parentDiv'); 
-// 把新的元素插到页面上 
-parentDiv.appendChild(newDiv); 
+// 创建新的 div 元素
+var newDiv = document.createElement('div');
+// 给 div 设置文本内容
+newDiv.textContent = '这是一个新的 div 元素！';
+// 找到这个新元素的父节点
+var parentDiv = document.querySelector('.parentDiv');
+// 把新的元素插到页面上
+parentDiv.appendChild(newDiv);
 ```
 
 其次，DOM 接口同样面临严重的兼容性问题，例如上例中的 `querySelector` 接口许多低版本浏览器中无法正常执行，为此需要进一步扩展示例：
 
 ```js
-// 创建新的 div 元素 
-var newDiv = document.createElement('div'); 
-// 给 div 设置文本内容 
-newDiv.textContent = '这是一个新的 div 元素！'; 
+// 创建新的 div 元素
+var newDiv = document.createElement('div');
+// 给 div 设置文本内容
+newDiv.textContent = '这是一个新的 div 元素！';
 var parentDiv;
 // 如果浏览器支持 `querySelector`，我们优先使用
-if(document.querySelector) {
-  parentDiv = document.querySelector(".parentDiv");
+if (document.querySelector) {
+  parentDiv = document.querySelector('.parentDiv');
 }
 // 如果浏览器不支持 `querySelector`，那我们则使用 `getElementById`
 else {
-  parentDiv = document.getElementsByClassName("parentDiv");
+  parentDiv = document.getElementsByClassName('parentDiv');
 }
 
-// 把新的元素插到页面上 
-parentDiv.appendChild(newDiv); 
+// 把新的元素插到页面上
+parentDiv.appendChild(newDiv);
 ```
 
 这就导致了，在基于原生 HTML 开发应用时，需要编写许多 Javascript 代码调用诸多晦涩难懂 DOM 接口才能实现基本的动态交互效果，大部分时间都花在低级接口调用与兼容性调优上，这明显是一种非常低效的开发方式。
@@ -343,10 +355,10 @@ parentDiv.append(newDiv);
 - 使用原生 DOM 接口：
 
 ```
-// 创建新的 div 元素 
-var newDiv = document.createElement('div'); 
-// 给 div 设置文本内容 
-newDiv.textContent = '这是一个新的 div 元素！'; 
+// 创建新的 div 元素
+var newDiv = document.createElement('div');
+// 给 div 设置文本内容
+newDiv.textContent = '这是一个新的 div 元素！';
 var parentDiv;
 // 如果浏览器支持 `querySelector`，我们优先使用
 if(document.querySelector) {
@@ -357,7 +369,7 @@ else {
   parentDiv = document.getElementsByClassName("parentDiv");
 }
 
-// 把新的元素插到页面上 
+// 把新的元素插到页面上
 parentDiv.appendChild(newDiv);
 ```
 
@@ -366,24 +378,24 @@ parentDiv.appendChild(newDiv);
 当下，`jQuery` 已成过去式(但不应被忘记)，**Vue**、**React** 等 MVVM 框架已经成为绝对的主流，它们不再满足于仅仅优化 DOM 接口的“命令式”调用规则，而是更进一步将“状态”自动映射为“UI”，对使用者而言，只需要定义好状态到 UI 的映射与交互规则，并管理好应用状态流转即可，具体的渲染、更新、事件动作、数据追踪都可交由框架层实现，开发规则从“命令式”跃迁为“声明式”，注意力也从“底层” DOM 操作迁移到框架规则与业务逻辑上，这是一种“质”的变化，算得上是 HTML 开发模式上的第二次革命。看个对比：
 
 ```
-import React, { useState } from 'react'; 
- 
-const Hello = () => { 
-  const [name, setName] = useState('World'); 
- 
-  const changeName = () => { 
-    setName('React'); 
-  }; 
- 
-  return ( 
-    <div> 
-      <h1 onClick={changeName}> 
-        Hello, {name}! 
-      </h1> 
-    </div> 
-  ); 
-}; 
- 
+import React, { useState } from 'react';
+
+const Hello = () => {
+  const [name, setName] = useState('World');
+
+  const changeName = () => {
+    setName('React');
+  };
+
+  return (
+    <div>
+      <h1 onClick={changeName}>
+        Hello, {name}!
+      </h1>
+    </div>
+  );
+};
+
 export default Hello;
 ```
 
@@ -392,16 +404,16 @@ export default Hello;
 而使用 `jQuery` 实现相同功能时：
 
 ```
-$(document).ready(function() { 
-  let name = "World"; 
-  $('#hello').text('Hello, ' + name); 
-   
-  $('#hello').click(function() { 
-    name = "React";  
-    $('#hello').text('Hello, ' + name); 
-  }); 
-   
-}); 
+$(document).ready(function() {
+  let name = "World";
+  $('#hello').text('Hello, ' + name);
+
+  $('#hello').click(function() {
+    name = "React";
+    $('#hello').text('Hello, ' + name);
+  });
+
+});
 ```
 
 > 需要单独跟踪 name 的变化，调用 jQuery 接口更新到界面上，当状态增多时，这种处理会变得非常复杂。
@@ -410,22 +422,18 @@ $(document).ready(function() {
 
 不过，这些框架原生提供的 API 并没有脱离 Javascript 语法范畴，还是比较原始难用的，例如：
 
-``` js
-var Hello = function Hello(props) { 
-  return React.createElement( 
-    'div', 
-    null, 
-    React.createElement( 
-      'h1', 
-      null, 
-      'Hello, ', props.name 
-    ) 
-  ); 
+```js
+var Hello = function Hello(props) {
+  return React.createElement(
+    'div',
+    null,
+    React.createElement('h1', null, 'Hello, ', props.name),
+  );
 };
 var Hello = {
   render() {
-    return _c("div", { on: { click: changeName } }, [
-      _v("Hello, " + _s(name) + "!"),
+    return _c('div', { on: { click: changeName } }, [
+      _v('Hello, ' + _s(name) + '!'),
     ]);
   },
 };
@@ -436,28 +444,28 @@ var Hello = {
 - 源码：
 
 ```
-var Hello = function Hello(props) { 
-  return ( 
-    <div> 
-      <h1>Hello, {props.name}</h1> 
-    </div> 
-  ); 
+var Hello = function Hello(props) {
+  return (
+    <div>
+      <h1>Hello, {props.name}</h1>
+    </div>
+  );
 };
 ```
 
 - 编译后：
 
 ```
-var Hello = function Hello(props) { 
-  return React.createElement( 
-    'div', 
-    null, 
-    React.createElement( 
-      'h1', 
-      null, 
-      'Hello, ', props.name 
-    ) 
-  ); 
+var Hello = function Hello(props) {
+  return React.createElement(
+    'div',
+    null,
+    React.createElement(
+      'h1',
+      null,
+      'Hello, ', props.name
+    )
+  );
 };
 ```
 
@@ -474,16 +482,17 @@ var Hello = function Hello(props) {
 任务流引擎的解题思路是“**可编程性**”，以 Gulp 为例，它抽象定义了一套支持并行、串行的任务执行框架以及一系列较易用的文件接口，启动后按照用户提供的配置规则按序逐次执行各项任务，前一个任务的输出作为下一个任务的输入逐层传递，形成流式执行效果。例如：
 
 ```js
-var gulp = require('gulp'); 
-var uglify = require('gulp-uglify'); 
-var rename = require('gulp-rename'); 
- 
-gulp.task('compress', function () { 
-  gulp.src('src/*.js')        // 匹配需要压缩的 JavaScript 文件 
-    .pipe(uglify())           // 压缩 JavaScript 
-    .pipe(rename({suffix: ".min"}))   // 重命名文件，添加 ".min" 后缀 
-    .pipe(gulp.dest('dist'));  // 输出结果到 "dist" 文件夹 
-}); 
+var gulp = require('gulp');
+var uglify = require('gulp-uglify');
+var rename = require('gulp-rename');
+
+gulp.task('compress', function () {
+  gulp
+    .src('src/*.js') // 匹配需要压缩的 JavaScript 文件
+    .pipe(uglify()) // 压缩 JavaScript
+    .pipe(rename({ suffix: '.min' })) // 重命名文件，添加 ".min" 后缀
+    .pipe(gulp.dest('dist')); // 输出结果到 "dist" 文件夹
+});
 ```
 
 示例中的 `compress` 任务首先调用 `gulp.src` 读入 `src/*.js` 文件，之后调用 `gulp-uglify` 进行压缩，之后调用 `gulp-rename` 重命名文件并调用 `gulp.dest` 将结果输出到 `dist` 目录。这是一个非常经典的例子，由此可窥见 Gulp 框架本身只是提供了一些工具性质的任务流与文件输入输出接口，以此简化构建工作的流程控制，但并不直接参与处理文件内容，用户可在任务(本质上就是 JS 函数)中通过编程方式接入诸多工程化工具 —— 包括 ESLint、Typescript、Babel 等，实现集成效果。
@@ -493,40 +502,40 @@ gulp.task('compress', function () {
 而 Webpack 这类集成框架的解题思路则是**可扩展性**，简言之，它们针对 Web 不同类型资源的构建需求定义了一套通用执行框架，框架会对项目资源执行读入、解析、递归识别依赖、编译构建、打包输出等标准处理动作，并在此基础上暴露一系列基于事件流的高度可扩展 API 方便用户实现对不同类型资源的特化处理。以 Webpack 为例：
 
 ```
-module.exports = { 
-  entry: './src/index.js',  // 入口文件 
-  module: { 
-    rules: [ 
-      { 
-        test: /\.js$/,   // 匹配 JS 文件 
-        exclude: /node_modules/,   // 排除 node_modules 目录 
-        use: { 
-          loader: 'babel-loader',  // 使用 babel-loader 
-          options: { 
-            presets: ['@babel/preset-env']  // 转码规则预设 
-          } 
-        } 
-      }, 
-      { 
-        test: /\.ts$/,  //匹配 TS 文件 
-        exclude: /node_modules/, // 排除 node_modules 目录 
-        use: 'ts-loader',  // 使用 ts-loader 
-      }, 
-      { 
-        enforce: 'pre',  // ESLint 优先处理 
-        test: /\.js$/, // 匹配 JS 文件 
-        exclude: /node_modules/,  // 排除 node_modules 目录 
-        loader: 'eslint-loader',// 使用 eslint-loader 
-      } 
-    ] 
-  }, 
-  resolve: { 
-    extensions: ['.tsx', '.ts', '.js'],  // 自动解析确定的扩展 
-  }, 
-  output: { 
-    filename: 'bundle.js',  // 出口文件名 
-    path: path.resolve(__dirname, 'dist'),  // 出口文件路径 
-  }, 
+module.exports = {
+  entry: './src/index.js',  // 入口文件
+  module: {
+    rules: [
+      {
+        test: /\.js$/,   // 匹配 JS 文件
+        exclude: /node_modules/,   // 排除 node_modules 目录
+        use: {
+          loader: 'babel-loader',  // 使用 babel-loader
+          options: {
+            presets: ['@babel/preset-env']  // 转码规则预设
+          }
+        }
+      },
+      {
+        test: /\.ts$/,  //匹配 TS 文件
+        exclude: /node_modules/, // 排除 node_modules 目录
+        use: 'ts-loader',  // 使用 ts-loader
+      },
+      {
+        enforce: 'pre',  // ESLint 优先处理
+        test: /\.js$/, // 匹配 JS 文件
+        exclude: /node_modules/,  // 排除 node_modules 目录
+        loader: 'eslint-loader',// 使用 eslint-loader
+      }
+    ]
+  },
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js'],  // 自动解析确定的扩展
+  },
+  output: {
+    filename: 'bundle.js',  // 出口文件名
+    path: path.resolve(__dirname, 'dist'),  // 出口文件路径
+  },
 };
 ```
 
@@ -544,8 +553,4 @@ Webpack 这类集成构建框架与 Gulp 这类任务流引擎所定义的职责
 
 下一篇文章我会继续讲解如何提升开发效率，感兴趣的同学可关注我的个人公众号，持续围观。
 
-![](https://files.mdnice.com/user/1892/677e8523-5876-432d-8966-88bcee4301c3.png)
-
-系列往期：
-
-- 《[前端工程化系列一：序言](https://mp.weixin.qq.com/s/NuH-sga13okeMVGDFZWFtQ)》
+![](assets/2024-07-09-12-56-00.png)
