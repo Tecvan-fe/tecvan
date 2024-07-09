@@ -2,11 +2,11 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "About Tecvan",
-  srcDir:'src',
-  description: "Everything about Tecvan",
+  title: 'About Tecvan',
+  srcDir: 'src',
+  description: 'Everything about Tecvan',
   rewrites: {
-    ':page?/index.md': ':page/'
+    ':page?/index.md': ':page/',
   },
   head: [['link', { rel: 'icon', href: '/favicon.ico' }]],
   themeConfig: {
@@ -14,6 +14,7 @@ export default defineConfig({
     nav: [
       { text: 'Home', link: '/' },
       { text: '前端工程化系列', link: '/fee/1-preface/' },
+      { text: '🦀 About Me', link: '/about' },
     ],
 
     sidebar: [
@@ -21,13 +22,11 @@ export default defineConfig({
         text: '前端工程化',
         items: [
           { text: '序言', link: '/fee/1-preface/' },
-          { text: '编码提效', link: '/fee/2-improve-coding-efficiency/' }
-        ]
-      }
+          { text: '编码提效', link: '/fee/2-improve-coding-efficiency/' },
+        ],
+      },
     ],
 
-    socialLinks: [
-      { icon: 'github', link: 'https://github.com/tecvan-fe' }
-    ]
-  }
-})
+    socialLinks: [{ icon: 'github', link: 'https://github.com/tecvan-fe' }],
+  },
+});
