@@ -4,10 +4,10 @@ layout: doc
 prev: false
 next: false
 sidebar: false
-# head:
-#   - - meta
-#     - http-equiv: Refresh
-#       content: "0; URL='/fee/1-preface'"
+head:
+  - - meta
+    - http-equiv: Refresh
+      content: "0; URL='/fee/1-preface'"
 ---
 
 # 范文杰的博客
