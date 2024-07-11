@@ -5,8 +5,8 @@ NC='\033[0m'
 CURRENT_USER=$(git config user.email)
 CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 
-if [ "$CURRENT_BRANCH" = "master" ]; then
-  echo "${RED}Do not push to master branch manually!!!${NC}"
+if [ "$CURRENT_BRANCH" = "main" ]; then
+  echo "${RED}Do not push to main branch manually!!!${NC}"
   exit 1
 fi
 
