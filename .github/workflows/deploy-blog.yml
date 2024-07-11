@@ -33,5 +33,6 @@ jobs:
         run: node common/scripts/install-run-rush.js install -t @tecvan/tecvan-site.app
 
       - name: Build with VitePress
-        run: sh apps/tecvan-site/deploy.sh
+        run: |
+          sh apps/tecvan-site/deploy.sh
         shell: bash
