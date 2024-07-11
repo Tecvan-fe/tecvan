@@ -23,7 +23,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0 # Not needed if lastUpdated is not enabled
-      # - uses: oven-sh/setup-bun@v1 # Uncomment this if you're using Bun
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -35,4 +35,5 @@ jobs:
       - name: Build with VitePress
         run: |
           sh apps/tecvan-site/deploy.sh
+          source scripts/deploy_base.sh
         shell: bash
