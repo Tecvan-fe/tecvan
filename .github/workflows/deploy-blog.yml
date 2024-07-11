@@ -28,7 +28,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: pnpm
+          
       - name: Install dependencies
         run: node common/scripts/install-run-rush.js install -t @tecvan/tecvan-site.app
 
