@@ -7,7 +7,7 @@ cd $(dirname "$0")
 
 source ../../scripts/deploy_base.sh
 
-# NODE_ENV=production rushx build -o .
+NODE_ENV=production rushx build -o .
 
 if [ $? -eq 0 ]; then
   # TODO: this line is so tricky, should be process by vite
