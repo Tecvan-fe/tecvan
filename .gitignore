@@ -20,3 +20,9 @@ common/autoinstallers/*/.npmrc
 # Heft temporary files
 .cache
 .heft
+
+.vercel/output
+rush-logs
+dist
+
+*.tsbuildinfo
