@@ -34,6 +34,5 @@ jobs:
 
       - name: Build with VitePress
         run: |
-          sh apps/tecvan-site/deploy.sh
-          source scripts/deploy_base.sh
+          bash apps/tecvan-site/deploy.sh
         shell: bash
