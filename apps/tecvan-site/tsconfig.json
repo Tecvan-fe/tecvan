@@ -1,0 +1,10 @@
+{
+  "extends": "@infra/ts-config/tsconfig.node.json",
+  "compilerOptions": {
+    "rootDir": "./",
+    "noEmit": true,
+    "sourceMap": false,
+    "esModuleInterop": true
+  },
+  "include": [".vitepress", "src"]
+}
