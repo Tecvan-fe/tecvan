@@ -68,6 +68,15 @@ export default defineConfig({
             text: '插件架构深度讲解',
             link: '/webpack/2-deep-in-architecture/',
           },
+
+          {
+            text: 'module.issuer 属性详解',
+            link: '/webpack/3-module-issuer/',
+          },
+          {
+            text: '深度解析 Dependency Graph',
+            link: '/webpack/4-dependencies-graph/',
+          },
         ],
       },
     ],
