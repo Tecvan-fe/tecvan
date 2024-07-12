@@ -396,6 +396,10 @@
     {
       "packageName": "@tecvan/tecvan-site.app",
       "projectFolder": "apps/tecvan-site"
+    },
+    {
+      "packageName": "@tecvan/vitepress-theme-plus",
+      "projectFolder": "packages/vitepress/theme-plus"
     }
   ]
 }

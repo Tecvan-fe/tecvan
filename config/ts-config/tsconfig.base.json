@@ -13,9 +13,9 @@
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
-    "moduleResolution": "NodeNext",
+    "moduleResolution": "Node",
     "lib": ["ESNext"],
-    "module": "ESNext",
+    "module": "CommonJS",
     "noFallthroughCasesInSwitch": true,
     // 这个普遍反馈会让代码变得啰嗦，暂定遵循原本 bot 的设置，关闭
     "noImplicitReturns": false,
