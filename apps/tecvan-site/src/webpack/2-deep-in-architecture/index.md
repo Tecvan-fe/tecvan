@@ -166,7 +166,7 @@ person.sleep()
 
 示例中，`Somebody` 初始化时声明了一个 `sleep` 钩子，并在后续调用 `sleep.tap` 函数连续注册三次回调，在调用 `person.sleep()` 语句触发 `sleep.call` 之后，tapable 会按照注册的先后按序执行三个回调。
 
-![](assets/2024-07-10-13-28-43.png)
+![](../assets/2024-07-10-13-28-43.png)
 
 #### 异步风格
 
@@ -724,7 +724,7 @@ sleep.call()
 
 调用 `sleep.call` 时，tapable 内部处理流程大致为：
 
-![](assets/2024-07-10-13-29-01.png)
+![](../assets/2024-07-10-13-29-01.png)
 
 编译过程主要涉及三个实体：
 
@@ -844,11 +844,11 @@ sleep.callAsync('tecvan', (err, name) => {
 
 Tapable 提供的大多数特性都是基于 `Hook + HookCodeFactory` 实现的，如果读者对此有兴趣，可以在 `tapable/lib/Hook.js` 的 `CALL\_DELEGATE/CALL\_ASYNC\_DELEGATE/PROMISE\_DELEGATE` 几个函数打断点：
 
-![](assets/2024-07-10-13-29-15.png)
+![](../assets/2024-07-10-13-29-15.png)
 
 之后，通过 [ndb](https://github.com/GoogleChromeLabs/ndb) 命令断点调试，查看发布动作动态编译出的代码：
 
-![](assets/2024-07-10-13-29-24.png)
+![](../assets/2024-07-10-13-29-24.png)
 
 ## 高级特性：Intercept
 

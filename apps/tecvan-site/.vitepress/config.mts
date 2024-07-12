@@ -24,6 +24,10 @@ export default defineConfig({
   description: 'Everything about Tecvan',
   rewrites: {
     ':page?/index.md': ':page/',
+    ':page/.md': ':page',
+  },
+  sitemap: {
+    hostname: 'https://tecvan.fun',
   },
   head: additionHeaders,
   markdown: {
@@ -33,15 +37,16 @@ export default defineConfig({
     },
   },
   themeConfig: {
-    logo: 'assets/logo.jpg',
+    logo: '/logo.jpg',
     search: {
       provider: 'local',
     },
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: '💪 Webpack 技术揭秘', link: '/webpack/1-how-webpack-works' },
-      { text: '💼 通往工程化之路', link: '/fee/1-preface/' },
-      { text: '🦀 关于我', link: '/about' },
+      { text: '💼 通往工程化之路', link: '/fee/1-preface' },
+      { text: '🦀 关于我', link: '/about/' },
+      { text: '💰 投币', link: 'https://afdian.net/a/tecvan' },
     ],
 
     sidebar: [
@@ -57,16 +62,19 @@ export default defineConfig({
         items: [
           {
             text: '一文吃透 Webpack 核心原理',
-            link: '/webpack/1-how-webpack-works',
+            link: '/webpack/1-how-webpack-works/',
           },
           {
             text: '插件架构深度讲解',
-            link: '/webpack/2-deep-in-architecture',
+            link: '/webpack/2-deep-in-architecture/',
           },
         ],
       },
     ],
 
-    socialLinks: [{ icon: 'github', link: 'https://github.com/tecvan-fe' }],
+    socialLinks: [
+      { icon: 'github', link: 'https://github.com/tecvan-fe' },
+      { icon: 'twitter', link: 'https://x.com/tecvan_fe' },
+    ],
   },
 });
