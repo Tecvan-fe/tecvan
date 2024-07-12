@@ -45,11 +45,22 @@ export default defineConfig({
     nav: [
       { text: '💪 Webpack 技术揭秘', link: '/webpack/1-how-webpack-works' },
       { text: '💼 通往工程化之路', link: '/fee/1-preface' },
+      { text: '👽 杂文', link: '/essay/1-better-resume' },
       { text: '🦀 关于我', link: '/about/' },
       { text: '💰 投币', link: 'https://afdian.net/a/tecvan' },
     ],
 
     sidebar: {
+      '/essay': [
+        { text: '💼 通往工程化之路', link: '/fee/1-preface/' },
+        { text: '💪 Webpack 技术揭秘', link: '/webpack/1-how-webpack-works/' },
+        {
+          text: '👽 杂文',
+          items: [
+            { text: '如何写出有亮点的简历', link: '/essay/1-better-resume/' },
+          ],
+        },
+      ],
       '/fee': [
         {
           text: '💼 通往工程化之路',
@@ -59,6 +70,7 @@ export default defineConfig({
           ],
         },
         { text: '💪 Webpack 技术揭秘', link: '/webpack/1-how-webpack-works/' },
+        { text: '👽 杂文', link: '/essay/1-better-resume/' },
       ],
       '/webpack': [
         { text: '💼 通往工程化之路', link: '/fee/1-preface/' },
@@ -84,6 +96,7 @@ export default defineConfig({
             },
           ],
         },
+        { text: '👽 杂文', link: '/essay/1-better-resume/' },
       ],
     },
 
