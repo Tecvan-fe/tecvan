@@ -9,7 +9,7 @@ const additionHeaders = [
         `var _hmt = _hmt || [];
 (function() {
 var hm = document.createElement("script");
-hm.src = "https://hm.baidu.com/hm.js?95d2a0104ae6d08115511ce4daf84faa";
+hm.src = "https://hm.baidu.com/hm.js?d237f3fff63137976206d0b51375e273";
 var s = document.getElementsByTagName("script")[0]; 
 s.parentNode.insertBefore(hm, s);
 })();`,
