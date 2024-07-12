@@ -61,11 +61,11 @@ Webpack 4.x 的 Dependency Graph 实现较简单，主要由 Dependence/Module �
 
 ### 依赖收集过程
 
-`ModuleGraph`、`ModuleGraphConnection`、`ModuleGraphModule` 三者协作，在 webpack 构建过程\(make 阶段\)中逐步收集模块间的依赖关系，回顾前文 [\[万字总结\] 一文吃透 Webpack 核心原理](/webpack/1-how-webpack-works) 提及的构建流程图：
+`ModuleGraph`、`ModuleGraphConnection`、`ModuleGraphModule` 三者协作，在 webpack 构建过程\(make 阶段\)中逐步收集模块间的依赖关系，回顾前文 [\[万字总结\] 一文吃透 Webpack 核心原理](/webpack/1-how-webpack-works/) 提及的构建流程图：
 
 ![](assets/2024-07-13-00-07-36.png)
 
-构建流程本身很复杂，建议读者对比阅读 [\[万字总结\] 一文吃透 Webpack 核心原理](/webpack/1-how-webpack-works) 一文，加深理解。依赖关系收集过程主要发生在两个节点：
+构建流程本身很复杂，建议读者对比阅读 [\[万字总结\] 一文吃透 Webpack 核心原理](/webpack/1-how-webpack-works/) 一文，加深理解。依赖关系收集过程主要发生在两个节点：
 
 - `addDependency` ：webpack 从模块内容中解析出引用关系后，创建适当的 `Dependency` 子类并调用该方法记录到 `module` 实例
 
