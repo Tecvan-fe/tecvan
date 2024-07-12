@@ -78,7 +78,7 @@ packages/speedy-plugin-pia/lib
 common/changes/
 common/scripts/
 common/config/
-common/_templates/
+common/_templates/node-core
 CHANGELOG.*
 
 # Emo files

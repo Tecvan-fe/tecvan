@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "paths": {
+      "rush-init-project-plugin": [
+        "../../autoinstallers/plugins/node_modules/rush-init-project-plugin"
+      ]
+    }
+  }
+}
