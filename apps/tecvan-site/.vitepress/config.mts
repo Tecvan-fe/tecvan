@@ -1,4 +1,6 @@
 import { defineConfig } from 'vitepress'
+import { type DefaultTheme } from 'vitepress/theme';
+import { series } from './articles';
 
 const additionHeaders = [
   ['link', { rel: 'icon', href: '/favicon.ico' }],
@@ -43,62 +45,33 @@ export default defineConfig({
     },
     // https://vitepress.dev/reference/default-theme-config
     nav: [
-      { text: '💪 Webpack 技术揭秘', link: '/webpack/1-how-webpack-works' },
-      { text: '💼 通往工程化之路', link: '/fee/1-preface' },
-      { text: '👽 杂文', link: '/essay/1-better-resume' },
+      ...series.map(r => ({
+        text: `${r.icon} ${r.title}`,
+        link: `/${r.subPath}/${r.children[0].subPath}/`,
+      })),
       { text: '🦀 关于我', link: '/about/' },
-      { text: '💰 投币', link: 'https://afdian.net/a/tecvan' },
+      // { text: '💰 投币', link: 'https://afdian.net/a/tecvan' },
     ],
 
-    sidebar: {
-      '/essay': [
-        { text: '💼 通往工程化之路', link: '/fee/1-preface/' },
-        { text: '💪 Webpack 技术揭秘', link: '/webpack/1-how-webpack-works/' },
-        {
-          text: '👽 杂文',
-          items: [
-            { text: '如何写出有亮点的简历', link: '/essay/1-better-resume/' },
-          ],
-        },
-      ],
-      '/fee': [
-        {
-          text: '💼 通往工程化之路',
-          items: [
-            { text: '序言', link: '/fee/1-preface/' },
-            { text: '编码提效', link: '/fee/2-improve-coding-efficiency/' },
-          ],
-        },
-        { text: '💪 Webpack 技术揭秘', link: '/webpack/1-how-webpack-works/' },
-        { text: '👽 杂文', link: '/essay/1-better-resume/' },
-      ],
-      '/webpack': [
-        { text: '💼 通往工程化之路', link: '/fee/1-preface/' },
-        {
-          text: '💪 Webpack 技术揭秘',
-          items: [
-            {
-              text: '一文吃透 Webpack 核心原理',
-              link: '/webpack/1-how-webpack-works/',
-            },
-            {
-              text: '插件架构深度讲解',
-              link: '/webpack/2-deep-in-architecture/',
-            },
-
-            {
-              text: 'module.issuer 属性详解',
-              link: '/webpack/3-module-issuer/',
-            },
-            {
-              text: '深度解析 Dependency Graph',
-              link: '/webpack/4-dependencies-graph/',
-            },
-          ],
-        },
-        { text: '👽 杂文', link: '/essay/1-better-resume/' },
-      ],
-    },
+    sidebar: series.reduce((acc, { subPath }) => {
+      return {
+        ...acc,
+        [`/${subPath}`]: series.map(r => {
+          const node: DefaultTheme.SidebarItem = {
+            text: `${r.icon} ${r.title}`,
+          };
+          if (r.subPath === subPath) {
+            node.items = r.children.map(c => ({
+              text: c.title,
+              link: `/${r.subPath}/${c.subPath}/`,
+            }));
+          } else {
+            node.link = `/${r.subPath}/${r.children[0].subPath}/`;
+          }
+          return node;
+        }),
+      };
+    }, {}),
 
     socialLinks: [
       { icon: 'github', link: 'https://github.com/tecvan-fe' },
