@@ -43,6 +43,12 @@ export const series: SeriesDefinition[] = [
     title: '杂文',
     icon: '👽',
     subPath: 'essay',
-    children: [{ title: '如何写出有亮点的简历', subPath: '1-better-resume' }],
+    children: [
+      { title: '如何写出有亮点的简历', subPath: '1-better-resume' },
+      {
+        title: 'VSCode 代码高亮原理',
+        subPath: '2-about-vscode-highlight',
+      },
+    ],
   },
 ];
