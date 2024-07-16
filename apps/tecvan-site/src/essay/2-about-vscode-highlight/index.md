@@ -668,15 +668,3 @@ LSP Server 代码的主要流程：
 Vscode 用插件方式提供了多种语言扩展接口，分声明式、编程式两类，在实际项目中通常会混合使用这两种技术，用基于 TextMate 的声明式接口迅速识别出代码中的词法；再用编程式接口如 LSP 补充提供诸如错误提示、代码补齐、跳转定义等高级功能。
 
 这段时间看了不少开源 vscode 插件，其中 Vue 官方提供的 Vetur 插件学习是这方面的典型案例，学习价值极高，建议对这方面有兴趣的读者可以自行前往分析学习 vscode 语言扩展类插件的写法。
-
-> 往期文章
->
-> - [分享几个 Webpack 实用分析工具](https://mp.weixin.qq.com/s/A0udBhvNoA0o-kX1B0rt9A)
-> - [\[建议收藏\] Webpack 4+ 优秀学习资料合集](https://zhuanlan.zhihu.com/p/372721645)
-> - [\[万字总结\] 一文吃透 Webpack 核心原理](https://mp.weixin.qq.com/s/SbJNbSVzSPSKBe2YStn2Zw)
-> - [\[源码解读\] Webpack 插件架构深度讲解](https://mp.weixin.qq.com/s/tXkGx6Ckt9ucT2o8tNM-8w)
-> - [十分钟精进 Webpack：module.issuer 属性详解](https://mp.weixin.qq.com/s/QkXFOHNpL0PRQtCcWIaX-g)
-> - [有点难的 webpack 知识点：Dependency Graph 深度解析](https://mp.weixin.qq.com/s/kr73Epnn6wAx9DH7KRVUaA)
-> - [有点难的知识点： Webpack Chunk 分包规则详解](https://mp.weixin.qq.com/s/dFrRY_ntUwmIOXzs8TYcFQ)
-> - [Webpack 原理系列六： 彻底理解 Webpack 运行时](https://mp.weixin.qq.com/s/nkBvbwpzeb0fzG02HXta8A)
-> - [Webpack 原理系列七：如何编写loader](https://mp.weixin.qq.com/s/TPWcB4MfVrTgFtVxsShNFA)
