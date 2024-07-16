@@ -49,6 +49,10 @@ export const series: SeriesDefinition[] = [
         title: 'VSCode 代码高亮原理',
         subPath: '2-about-vscode-highlight',
       },
+      {
+        title: '动态码流视频服务',
+        subPath: '3-ffmpeg-vs-hls',
+      },
     ],
   },
 ];
