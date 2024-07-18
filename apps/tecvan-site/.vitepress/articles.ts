@@ -53,6 +53,8 @@ export const series: SeriesDefinition[] = [
         title: '动态码流视频服务',
         subPath: '3-ffmpeg-vs-hls',
       },
+      { title: 'Esbuild 为什么那么快？', subPath: '4-why-esbuild-quick' },
+      { title: 'Vite 的好与坏', subPath: '5-about-vite' },
     ],
   },
 ];
