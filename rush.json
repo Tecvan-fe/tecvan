@@ -396,6 +396,10 @@
     {
       "packageName": "@tecvan/tecvan-site.app",
       "projectFolder": "apps/tecvan-site"
+    },
+    {
+      "packageName": "@tecvan/upload-blogs",
+      "projectFolder": "infra/cron/upload-blogs"
     }
   ]
 }

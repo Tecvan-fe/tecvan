@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "../../autoinstallers/plugins/tsconfig.json",
+  "compilerOptions": {
+    "rootDir": "./",
+    "moduleResolution": "Node16",
+    "module": "Node16",
+    "noEmit": true,
+  },
+  "include": ["*.ts"]
+}
