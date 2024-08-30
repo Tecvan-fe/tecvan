@@ -273,7 +273,7 @@
    * separated by hyphens or slashes, where a word may contain lowercase ASCII letters, digits,
    * ".", and "@" characters.
    */
-  // "allowedProjectTags": [ "tools", "frontend-team", "1.0.0-release" ],
+  "allowedProjectTags": ["slide"],
   /**
    * (Required) This is the inventory of projects to be managed by Rush.
    *
@@ -396,6 +396,11 @@
     {
       "packageName": "@tecvan/tecvan-site.app",
       "projectFolder": "apps/tecvan-site"
+    },
+    {
+      "packageName": "@tecvan-slides/how-to-read-webpack",
+      "projectFolder": "slides/how-to-read-webpack",
+      "tags": ["slide"]
     }
   ]
 }

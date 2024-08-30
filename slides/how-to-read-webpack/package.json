@@ -1,0 +1,20 @@
+{
+  "name": "@tecvan-slides/how-to-read-webpack",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "slidev build",
+    "dev": "slidev --open",
+    "export": "slidev export",
+    "lint": "eslint ./"
+  },
+  "dependencies": {
+    "@infra/eslint-config": "workspace:*",
+    "@infra/ts-config": "workspace:*",
+    "@slidev/cli": "^0.36.1",
+    "@slidev/theme-default": "*",
+    "@slidev/theme-seriph": "*",
+    "eslint": "^8.56.0",
+    "slidev-theme-purplin": "^1.1.0"
+  }
+}
