@@ -22,6 +22,9 @@ importers:
       '@infra/ts-config':
         specifier: workspace:*
         version: link:../../config/ts-config
+      eslint:
+        specifier: ^8.56.0
+        version: 8.57.0
       typescript:
         specifier: ^5.5.3
         version: 5.5.3
